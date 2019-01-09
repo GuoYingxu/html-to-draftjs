@@ -7,6 +7,11 @@ const getEntityId = (node) => {
   ) {
     const entityConfig = {};
     if (node.dataset && node.dataset.mention !== undefined) {
+      for(var key in node.dataset){
+        if(key!="_map" && key!='url' && key!== 'text' && key!== 'value'){
+          entityConfig[key] = node.dataset[key]
+        }
+      }
       entityConfig.url = node.href;
       entityConfig.text = node.innerHTML;
       entityConfig.value = node.dataset.value;
